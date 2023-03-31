@@ -1,0 +1,11 @@
+<div class="blognotes">
+    {{#each blogs as |blog|}}
+        <div class="separator">
+            <h5 class="blogtitle"><a href="/blog/{{blog.id}}">{{blog.blog_title}}</a></h5>
+            <p id="blogcontent">{{blog.blog_content}}</p>
+            <p id="postdate">Post Date: {{blog.blog_date}}</p>
+            <p id="postdate">Post Author: {{blog.blog_author}}</p>
+        </div>
+    {{/each}}
+</div>
+

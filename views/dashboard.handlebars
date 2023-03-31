@@ -1,0 +1,39 @@
+<div id="welcomedashboard">
+  <h5>Welcome</h5>
+  <h5 id="usernameLabel">{{username}}</h5>
+  <h5>These are your blogs registered:</h5>
+</div>
+
+{{#if blogs.length}}
+  <div class="blognotes">
+    {{#each blogs as |blog|}}
+      <div class="separator">
+        <h5 class="blogtitle"><a href="/blog/{{blog.id}}">{{blog.blog_title}}</a></h5>
+        <p id="blogcontent">{{blog.blog_content}}</p>
+        <p id="postdate">Post Date: {{blog.blog_date}}</p>
+        <p id="postauthor">Post Author: {{blog.blog_author}}</p>
+        <button type="button" class="btn btn-danger" id="deletebutton" data-blogid="{{blog.id}}">Delete</button>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No blogs found under this user</p>
+{{/if}}
+
+<div class="form-container text-center">
+  <div class="mb-3"></div>
+  <div class="form-floating mb-3">
+    <input class="form-control" id="floatingInput">
+    <label for="floatingInput">Blog Title</label>
+  </div>
+  <div class="form-floating">
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+    <label for="floatingTextarea">Please write a new Blog</label>
+  </div>
+  <button id="submitbutton" class="btn btn-primary">Submit Blog</button>
+</div>
+
+<script src="./js/blog.js"></script>
+
+
+

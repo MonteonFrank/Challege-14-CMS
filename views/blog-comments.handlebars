@@ -1,0 +1,42 @@
+<div class="blog-container">
+  <div class="blognotes">
+    <div class="separator">
+      <h5 class="blogtitle">{{ blogData.blog_title }}</h5>
+      <p id="blogcontent">{{ blogData.blog_content }}</p>
+      <p id="postauthor">Post Author: {{ blogData.blog_author }}</p>
+      <p id="postdate">Post Date: {{ blogData.blog_date }}</p>
+    </div>
+
+    <h6>Comments</h6>
+    {{#each commentData}}
+      <div class="separator">
+        <div class="comment" id="commenttitle">
+          <p id="commentcontent">{{ this.comment }}</p>
+          <p id="commentauthor">Comment by: {{ this.comment_author }}</p>
+        </div>
+      </div>
+    {{else}}
+      <p>No comments yet</p>
+    {{/each}}
+  </div>
+
+  <div class="form-container">
+    <div class="usernameLabel">
+    <label class="username" id="usernameLabel">User logged in: {{username}}</label>
+    </div>
+    <div class="usernameLabel">
+      <label for="exampleFormControlTextarea1" class="form-label" id="commentlabel">Please write your comment for this blog</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" style="height: 200px" style="width:50px"></textarea>
+    </div>
+    <div id="button">
+    <input type="hidden" id="blogID" value="{{blogData.id}}">
+    <button id="submitbutton" class="btn btn-primary">Submit Comment</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/comment.js"></script>
+  {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+  {{/if}}
+
