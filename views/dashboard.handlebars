@@ -13,6 +13,7 @@
         <p id="postdate">Post Date: {{blog.blog_date}}</p>
         <p id="postauthor">Post Author: {{blog.blog_author}}</p>
         <button type="button" class="btn btn-danger" id="deletebutton" data-blogid="{{blog.id}}">Delete</button>
+        <button type="button" class="btn btn-secondary" id="editbutton" data-blogid="{{blog.id}}">Edit</button>
       </div>
     {{/each}}
   </div>
@@ -31,6 +32,7 @@
     <label for="floatingTextarea">Please write a new Blog</label>
   </div>
   <button id="submitbutton" class="btn btn-primary">Submit Blog</button>
+
 </div>
 
 <script src="./js/blog.js"></script>
