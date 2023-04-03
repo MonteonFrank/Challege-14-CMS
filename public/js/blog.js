@@ -1,55 +1,55 @@
-const deleteButtons = document.querySelectorAll('#deletebutton');
+const submitbutton = document.querySelector('#submitbutton');
+const deletebutton = document.querySelector('#deletebutton');
+const deleteButtons = document.querySelectorAll('.btn-danger');
 
-deleteButtons.forEach(deleteButton => {
-  deleteButton.addEventListener('click', deleteBlog);
-});
+const deleteBlog = async (event) => {
+  const blogId = event.target.dataset.blogid;
 
-async function deleteBlog() {
-  const blogId = this.getAttribute('data-blogid');
+  const response = await fetch(`/api/blog/${blogId}`, {
+      method: 'DELETE'
+  });
 
-  try {
-    const response = await fetch(`/api/blog/${blogId}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      document.location.reload();
-      alert ('Blog deleted successfully')
-    } else {
-      alert('Failed to delete blog');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Failed to delete blog');
+  if(response.ok){
+      alert('Blog deleted successfully!');
+      window.location.reload();
+  } else {
+      alert('Blog not deleted');
   }
+};
+
+if (deleteButtons.length > 0) {
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', deleteBlog);
+  });
 }
 
-const submitButton = document.querySelector('#submitbutton');
+const addBlog = async () => {
+  const blogcontent = document.querySelector('#floatingTextarea').value;
+  const usernameLabel = document.querySelector('#usernameLabel');
+  const author = usernameLabel.textContent.trim();
+  const blogtitle = document.querySelector('#floatingInput').value;
 
-submitButton.addEventListener('click', submitBlog);
+  const response = await fetch('/api/blog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+        blog_title: blogtitle, 
+        blog_content: blogcontent, 
+        blog_author: author })
+  });
 
-async function submitBlog() {
-  const title = document.querySelector('#floatingInput').value.trim();
-  const content = document.querySelector('#floatingTextarea').value.trim();
-  const author = document.querySelector('#usernameLabel').textContent.trim();
+  const dbBlogData = await response.json(); 
 
-  if (title && content) {
-    try {
-      const response = await fetch('/api/blog', {
-        method: 'POST',
-        body: JSON.stringify({ blog_title: title, blog_content: content, blog_author: author }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+  console.log(dbBlogData)
 
-      if (response.ok) {
-        document.location.reload();
-        alert('Blog created successfully')
-      } else {
-        alert('Failed to submit blog');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Failed to submit blog');
-    }
+  if (response.ok) {
+    alert('Blog added successfully!');
+    window.location.reload(); 
+  } else {
+    alert('Blog not added');
   }
-}
+};
+
+
+deletebutton.addEventListener('click', deleteBlog);
+submitbutton.addEventListener('click', addBlog);
