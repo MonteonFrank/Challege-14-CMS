@@ -34,7 +34,8 @@ router.post('/', async (req, res) => {
 });
 
 
-// Login
+// Login method which compares the information to the database
+// Also creates a session using cookies
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
@@ -72,7 +73,7 @@ router.post('/login', async (req, res) => {
 });
 
 
-// Logout
+// Logout method which destroys the session
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

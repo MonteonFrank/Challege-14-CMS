@@ -34,6 +34,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// POST method to create a comment specific to a blog
 router.post('/', async (req, res) => {
   try {
     const { author, comment, blogID } = req.body;
@@ -51,10 +52,10 @@ router.post('/', async (req, res) => {
 
 module.exports = router;
 
-
+// find all the comments specific to a blog
 router.get('/:id/comments/', async (req, res) => {
   try {
-    // find one blog by id with associated products
+    
     const dbcommentdata = await Comments.findAll({
       where: { blog_id: req.params.id }
   });

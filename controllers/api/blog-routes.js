@@ -35,6 +35,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//POST Method to create a new blog
 router.post("/", async (req, res) => {
   try {
     const { blog_title, blog_content, blog_author } = req.body;
@@ -51,6 +52,7 @@ router.post("/", async (req, res) => {
 });
 
 
+// Delete method to destroy a specific blog
 router.delete('/:id', async (req, res) =>{
   try{
 
@@ -70,7 +72,7 @@ router.delete('/:id', async (req, res) =>{
 
 });
 
-
+// PUT method to modify a specific blog
 router.put('/:id', async (req, res) => {
   try {
     const blog = await Blog.findByPk(req.params.id);

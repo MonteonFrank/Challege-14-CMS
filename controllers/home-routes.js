@@ -3,6 +3,8 @@ const { Blog } = require('../models')
 const { Comments } = require('../models');
 const withAuth = require('../utils/auth')
 
+
+// Route to the home page where all the blogs are shown
 router.get('/', async (req, res) => {
     try {
       const blogData = await Blog.findAll();
@@ -15,6 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 
+// Route to a specific blog and if the user is not logged in, redirects them to the login page
 router.get("/blog/:id", withAuth, async (req, res) => {
   try {
     // Find one blog by id with associated comments and author
@@ -29,7 +32,6 @@ router.get("/blog/:id", withAuth, async (req, res) => {
       return;
 }
 
-    // Get the plain object for the blog data
     const blogData = dbBlogData.get({ plain: true });
     const commentData = dbCommentData.map(comment => comment.get({ plain: true }));
     const username = req.session.username;
@@ -40,6 +42,7 @@ router.get("/blog/:id", withAuth, async (req, res) => {
   }
 });
 
+// Route to render the dashboard and show only the blogs specific to the user who is logged in 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const username = req.session.username;
@@ -48,8 +51,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const dbBlogData = await Blog.findAll({
       where: { blog_author: username }
     });
-
-    console.log(dbBlogData); // <-- Added this line to check the data being retrieved
 
     res.render("dashboard", {
       blogs: dbBlogData.map(blog => blog.get({ plain: true })),
@@ -63,6 +64,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 
+// Route to edit a specific blog
 router.get('/editblog/:id', async (req, res) => {
   try {
     const blog = await Blog.findByPk(req.params.id);
@@ -81,6 +83,7 @@ router.get('/editblog/:id', async (req, res) => {
 
 
 
+// Route to the login page
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
