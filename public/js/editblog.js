@@ -1,17 +1,19 @@
-// Add event listener to the form's submit button
+//DOM element and event listener for the update blog function
 const submitButton = document.querySelector('#submitbutton');
 submitButton.addEventListener('click', updateBlog);
 
-// Function to handle the form submit event
+// Function to update the blog
+// Uses DOM elements to ogtain the information of the text area , blog ID and the content
 async function updateBlog(event) {
+ 
   event.preventDefault();
-
   const updateForm = document.querySelector('#update-form');
+
+  //Error handling to know if the blog was upted  or if there is information missing
   if (!updateForm) {
     console.error('Could not find the update form.');
     return;
   }
-
   const blogId = document.querySelector('#blog-id').value.trim();
   if (!blogId) {
     console.error('The blog ID is missing.');

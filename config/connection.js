@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
+//code to use through my local machine
 // const sequelize = new Sequelize(
 //   process.env.DB_NAME,
 //   process.env.DB_USER,
@@ -13,6 +14,7 @@ require('dotenv').config();
 // );
 
 
+//code to use the database in Heroku
 let sequelize;
 
 if (process.env.JAWSDB_URL) {

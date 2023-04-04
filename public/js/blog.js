@@ -4,14 +4,15 @@ const deletebutton = document.querySelector('#deletebutton');
 const deleteButtons = document.querySelectorAll('.btn-danger');
 const editbutton = document.querySelector("#editbutton")
 
-// Function to delete a blog
+// Function to delete a blog and call the DELETE API
 const deleteBlog = async (event) => {
+  
   const blogId = event.target.dataset.blogid;
-
   const response = await fetch(`/api/blog/${blogId}`, {
       method: 'DELETE'
   });
 
+  //Error handlers to know if the blog was deleted successfully or not
   if(response.ok){
       alert('Blog deleted successfully!');
       window.location.reload();
@@ -20,14 +21,14 @@ const deleteBlog = async (event) => {
   }
 };
 
-// Add event listener to delete buttons
+// Add event listener for all delete buttons
 if (deleteButtons.length > 0) {
   deleteButtons.forEach(button => {
     button.addEventListener('click', deleteBlog);
   });
 }
 
-// Function to add a blog
+// Function to add a blog and call the POST API Method
 const addBlog = async () => {
   const blogcontent = document.querySelector('#floatingTextarea').value;
   const usernameLabel = document.querySelector('#usernameLabel');
@@ -43,10 +44,7 @@ const addBlog = async () => {
         blog_author: author })
   });
 
-  const dbBlogData = await response.json(); 
-
-  console.log(dbBlogData)
-
+  //Error handlers to know if the blog was added successfully or not to the database
   if (response.ok) {
     alert('Blog added successfully!');
     window.location.reload(); 
@@ -55,12 +53,13 @@ const addBlog = async () => {
   }
 };
 
+//function to edit a specific blog and go to the edit blog page with the information obtained from the database 
 function editBlog(event) {
   const blogId = event.target.dataset.blogid;
   window.location.href = `/editblog/${blogId}`;
 }
 
 
-// Add event listener to submit button
+// Add event listener to submit button and the edit button
 submitbutton.addEventListener('click', addBlog);
 editbutton.addEventListener("click", editBlog)
