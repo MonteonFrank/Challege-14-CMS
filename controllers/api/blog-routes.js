@@ -71,10 +71,20 @@ router.delete('/:id', async (req, res) =>{
 });
 
 
-router.put('/:id', async (req, res) =>{
-  
-console.log("test")
-console.log("test2")
+router.put('/:id', async (req, res) => {
+  try {
+    const blog = await Blog.findByPk(req.params.id);
+
+    await blog.update({
+      blog_title: req.body.blog_title,
+      blog_content: req.body.blog_content
+    }, {message: "Blog updated successfully!"});
+
+    res.status(200).json(blog);
+  } catch (err) {
+    res.status(500).json({message: "Failed to update blog!"});
+  }
 });
+
 
 module.exports = router;
