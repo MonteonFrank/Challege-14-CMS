@@ -164,9 +164,10 @@ img {
 }
 
 
-h5, .blogtitle, h6, #usernameLabel, #commentlabel{
+h5, .blogtitle, h6, #usernameLabel, #commentlabel, a, a:visited, #commentsentence{
   color: white;
 }
+
 
 h6, #welcomedashboard{
   text-align: center;
