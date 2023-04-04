@@ -1,6 +1,7 @@
 const submitbutton = document.querySelector('#submitbutton');
 const deletebutton = document.querySelector('#deletebutton');
 const deleteButtons = document.querySelectorAll('.btn-danger');
+const editbutton = document.querySelector("#editbutton")
 
 const deleteBlog = async (event) => {
   const blogId = event.target.dataset.blogid;
@@ -51,5 +52,12 @@ const addBlog = async () => {
 };
 
 
+function editBlog(event) {
+  const blogId = event.target.dataset.blogid;
+  window.location.href = `/editblog/${blogId}`;
+}
+
+
 deletebutton.addEventListener('click', deleteBlog);
 submitbutton.addEventListener('click', addBlog);
+editbutton.addEventListener("click", editBlog)

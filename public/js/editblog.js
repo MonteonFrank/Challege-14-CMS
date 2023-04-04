@@ -6,13 +6,13 @@ submitButton.addEventListener('click', updateBlog);
 async function updateBlog(event) {
   event.preventDefault();
 
-  const updateForm = document.querySelector('#updateForm');
+  const updateForm = document.querySelector('#update-form');
   if (!updateForm) {
     console.error('Could not find the update form.');
     return;
   }
 
-  const blogId = updateForm.dataset.blogid;
+  const blogId = document.querySelector('#blog-id').value.trim();
   if (!blogId) {
     console.error('The blog ID is missing.');
     return;
@@ -32,9 +32,9 @@ async function updateBlog(event) {
       });
 
       if (response.ok) {
-        // Reload the page to display the updated blog
-        document.location.reload();
-        alert('Blog updated successfully')
+        // Reload the home page to display the updated blog
+        document.location.href = '/';
+        alert('Blog updated successfully');
       } else {
         alert('Failed to update blog');
       }

@@ -63,30 +63,21 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 
+router.get('/editblog/:id', async (req, res) => {
+  try {
+    const blog = await Blog.findByPk(req.params.id);
 
-// router.get("/dashboard", withAuth, async (req, res) => {
-//   try {
-
-//     const username = req.session.username;
-//     // Find all blogs submitted by the logged-in user
-//     let dbBlogData = await Blog.findAll({
-//       where: { blog_author: username }
-//     });
-
-//     console.log(dbBlogData)
-    
-//     res.render("dashboard", {
-//       blogs: dbBlogData,username,
-//       logged_in: req.session.logged_in,
-//       dbBlogData: dbBlogData
-//     });
-
-//   //   res.render("dashboard", { blogs: dbBlogData, username, logged_in: req.session.logged_in });
-//   // } catch (err) {
-//   //   console.log(err);
-//   //   res.status(500).json(err);
-//   // }
-//   });
+    res.render('editblog', { 
+      logged_in: req.session.logged_in, 
+      blog_title: blog.blog_title, 
+      blog_content: blog.blog_content, 
+      blog_id: blog.id 
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 
 
@@ -97,6 +88,8 @@ router.get('/login', (req, res) => {
   }
   res.render('login', {logged_in: req.session.logged_in});
 });
+
+
 
 
 
