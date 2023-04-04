@@ -1,8 +1,10 @@
+// Select DOM elements
 const submitbutton = document.querySelector('#submitbutton');
 const deletebutton = document.querySelector('#deletebutton');
 const deleteButtons = document.querySelectorAll('.btn-danger');
 const editbutton = document.querySelector("#editbutton")
 
+// Function to delete a blog
 const deleteBlog = async (event) => {
   const blogId = event.target.dataset.blogid;
 
@@ -18,12 +20,14 @@ const deleteBlog = async (event) => {
   }
 };
 
+// Add event listener to delete buttons
 if (deleteButtons.length > 0) {
   deleteButtons.forEach(button => {
     button.addEventListener('click', deleteBlog);
   });
 }
 
+// Function to add a blog
 const addBlog = async () => {
   const blogcontent = document.querySelector('#floatingTextarea').value;
   const usernameLabel = document.querySelector('#usernameLabel');
@@ -51,13 +55,12 @@ const addBlog = async () => {
   }
 };
 
-
 function editBlog(event) {
   const blogId = event.target.dataset.blogid;
   window.location.href = `/editblog/${blogId}`;
 }
 
 
-deletebutton.addEventListener('click', deleteBlog);
+// Add event listener to submit button
 submitbutton.addEventListener('click', addBlog);
 editbutton.addEventListener("click", editBlog)
