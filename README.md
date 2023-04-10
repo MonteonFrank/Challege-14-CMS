@@ -28,6 +28,26 @@ Create a CMS with topics viewed in class
 
  <p>I learned quite a lot about handlebards and authentication. I had to request several tutoring sessions and stayed in office hours to grasp and understand these both fucntions since these were the topics I mostly struggled for this challenge/p>
 
+<h2><strong>Application Images</strong></h2>
+<p>Login</p>
+
+![image](https://user-images.githubusercontent.com/112662397/230961851-98f19945-b422-4828-bfe0-48d5bf276b96.png)
+
+<p>Home</p>
+
+![image](https://user-images.githubusercontent.com/112662397/230962032-98e78215-836f-4c81-80ae-92813d4a8884.png)
+
+<p>Dashboard</p>
+
+![image](https://user-images.githubusercontent.com/112662397/230962231-db8c84ea-f002-49da-997b-03f4311904e0.png)
+
+<p>Edit Blog</p>
+
+![image](https://user-images.githubusercontent.com/112662397/230962471-8740c75c-1919-42ef-aa66-c80171fa3cf8.png)
+
 
 <h2><strong>Link to deployed application</strong></h2>
+<p>Link:</p>
 https://powerful-fjord-92631.herokuapp.com/
+
+
